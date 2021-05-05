@@ -1,0 +1,83 @@
+﻿<Window x:Class="ProjektBiblioteka.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjektBiblioteka"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="65*"/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Wypożycz Książkę" HorizontalAlignment="Left" Height="35" Margin="119,229,0,0" VerticalAlignment="Top" Width="195" Cursor="Hand" Click="WypozyczKsiazkeClick" Grid.Column="1"/>
+        <Button Content="Nowa Książka" HorizontalAlignment="Left" Height="35" Margin="119,149,0,0" VerticalAlignment="Top" Width="195" Cursor="Hand" Click="NowaKsiazkaClick" Grid.Column="1"/>
+        <Button Content="Lista Książek" HorizontalAlignment="Left" Height="35" Margin="119,189,0,0" VerticalAlignment="Top" Width="195" Cursor="Hand" Click="WyszukajKsiazkeClick" Grid.Column="1"/>
+        <Button Content="Oddaj Książkę" HorizontalAlignment="Left" Height="35" Margin="119,269,0,0" VerticalAlignment="Top" Width="195" Cursor="Hand" Click="OddajKsiazkeClick" Grid.Column="1"/>
+        <Button Content="Nowy Czytelnik" HorizontalAlignment="Left" Height="35" Margin="324,149,0,0" VerticalAlignment="Top" Width="195" Cursor="Hand" Click="NowyCzytelnikClick" Grid.Column="1"/>
+        <Button Content="Znajdz Czytelnika" HorizontalAlignment="Left" Height="35" Margin="324,189,0,0" VerticalAlignment="Top" Width="195" Cursor="Hand" Click="ZnajdzCzytelnikaClick" Grid.Column="1"/>
+        <Button Content="Lista Czytelników" HorizontalAlignment="Left" Height="35" Margin="324,229,0,0" VerticalAlignment="Top" Width="195" Cursor="Hand" Click="ListaCzytelnikowClick" Grid.Column="1"/>
+        <Grid Name="ListaKsiazek" Visibility="Hidden" Grid.ColumnSpan="2">
+            <ListView x:Name="list_view"  HorizontalAlignment="Left" Height="133" Margin="197,10,0,0" VerticalAlignment="Top" Width="398">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Id" DisplayMemberBinding="{Binding id}"/>
+                        <GridViewColumn Header="Tytuł" DisplayMemberBinding="{Binding tytul}"/>
+                        <GridViewColumn Header="Autor" DisplayMemberBinding="{Binding autor}"/>
+                        <GridViewColumn Header="Wydawnictwo" DisplayMemberBinding="{Binding wydawnictwo}"/>
+                        <GridViewColumn Header="Rok Wydania" DisplayMemberBinding="{Binding rokWydania}"/>
+                        <GridViewColumn Header="Liczba Stron" DisplayMemberBinding="{Binding liczbaStron}"/>
+                        <GridViewColumn Header="Wypozyczona" DisplayMemberBinding="{Binding czyWypozyczona}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </Grid>
+        <Grid x:Name="NowaKsiazka" Visibility="hidden" Grid.ColumnSpan="2">
+            <TextBox x:Name="nowaKsiazkaTytul" HorizontalAlignment="Left" Height="18" Margin="396,49,0,0" TextWrapping="Wrap" Text="Tytuł" VerticalAlignment="Top" Width="195"/>
+            <TextBox x:Name="nowaKsiazkaAutor" HorizontalAlignment="Left" Height="18" Margin="196,49,0,0" TextWrapping="Wrap" Text="Autor" VerticalAlignment="Top" Width="195"/>
+            <TextBox x:Name="nowaKsiazkaId" HorizontalAlignment="Left" Height="19" Margin="292,390,0,0" TextWrapping="Wrap" Text="Id" VerticalAlignment="Top" Width="195" Visibility="Hidden"/>
+            <TextBox x:Name="nowaKsiazkaRokWydania" HorizontalAlignment="Left" Height="19" Margin="396,76,0,0" TextWrapping="Wrap" Text="Rok Wydania" VerticalAlignment="Top" Width="193"/>
+            <TextBox x:Name="nowaKsiazkaWydawnictwo" HorizontalAlignment="Left" Height="18" Margin="196,76,0,0" TextWrapping="Wrap" Text="Wydawnictwo" VerticalAlignment="Top" Width="195"/>
+            <TextBox x:Name="nowaKsiazkaLiczbaStron" HorizontalAlignment="Left" Height="18" Margin="196,100,0,0" TextWrapping="Wrap" Text="Liczba Stron" VerticalAlignment="Top" Width="195"/>
+            <Button Content="Potwierdź" HorizontalAlignment="Left" Height="28" Margin="459,100,0,0" VerticalAlignment="Top" Width="72" Cursor="Hand" Click="ZatwierdzNowaKsiazkaClick"/>
+        </Grid>
+        <Grid x:Name="WypozyczKsiazke" Visibility="Hidden" Grid.ColumnSpan="2">
+            <TextBox x:Name="WypozyczKsiazkeId" HorizontalAlignment="Left" Height="22" Margin="316,93,0,0" TextWrapping="Wrap" Text="Id" VerticalAlignment="Top" Width="159"/>
+            <Button Content="Potwierdź" HorizontalAlignment="Left" Height="23" Margin="362,120,0,0" VerticalAlignment="Top" Width="62" Cursor="Hand" Click="ZatwierdzWypozyczKsiazke"/>
+        </Grid>
+        <Grid x:Name="OddajKsiazke" Visibility="Hidden" Grid.ColumnSpan="2">
+            <TextBox x:Name="OddajKsiazkeId" HorizontalAlignment="Left" Height="30" Margin="287,73,0,0" TextWrapping="Wrap" Text="Id" VerticalAlignment="Top" Width="224"/>
+            <Button Content="Potwierdź" HorizontalAlignment="Left" Height="31" Margin="350,108,0,0" VerticalAlignment="Top" Width="93" Cursor="Hand" Click="ZatwierdzOddajKsiazke"/>
+        </Grid>
+        <Grid x:Name="NowyCzytelnik" Visibility="hidden" Grid.ColumnSpan="2">
+            <TextBox x:Name="imieCzytelnika" HorizontalAlignment="Left" Height="34" Margin="200,28,0,0" TextWrapping="Wrap" Text="Imię" VerticalAlignment="Top" Width="195"/>
+            <TextBox x:Name="nazwiskoCzytelnika" HorizontalAlignment="Left" Height="34" Margin="400,28,0,0" TextWrapping="Wrap" Text="Nazwisko" VerticalAlignment="Top" Width="195"/>
+            <TextBox x:Name="wiekCzytelnika" HorizontalAlignment="Left" Height="34" Margin="200,67,0,0" TextWrapping="Wrap" Text="Wiek" VerticalAlignment="Top" Width="195"/>
+            <TextBox x:Name="nrKartyCzytelnika" Visibility="Hidden" HorizontalAlignment="Left" Height="34" Margin="400,67,0,0" TextWrapping="Wrap" Text="Nr Karty" VerticalAlignment="Top" Width="195"/>
+            <Button Content="Potwierdź" HorizontalAlignment="Left" Height="35" Margin="360,106,0,0" VerticalAlignment="Top" Width="71" Cursor="Hand" Click="ZatwierdzNowyCzytelnikClick"/>
+        </Grid>
+        <Grid x:Name="ZnajdzCzytelnika" Visibility="Hidden" Grid.ColumnSpan="2">
+            <TextBox x:Name="ZnajdzNrKartyCzytelnik" HorizontalAlignment="Left" Height="38" Margin="197,105,0,0" TextWrapping="Wrap" Text="Nr Karty" VerticalAlignment="Top" Width="194"/>
+
+            <Button Content="Potwierdź" HorizontalAlignment="Left" Height="30" Margin="400,113,0,0" VerticalAlignment="Top" Width="94" Cursor="Hand" Click="ZatwierdzZnajdzCzytelnika"/>
+
+            <Label x:Name="WynikZnajdzCzytelnika" HorizontalAlignment="Left" Height="90" Margin="197,10,0,0" VerticalAlignment="Top" Width="400"/>
+            
+
+        </Grid>
+        <Grid Name="ListaCzytelnikow" Visibility="Hidden" Grid.ColumnSpan="2">
+            <ListView x:Name="lista_czytelnikow" HorizontalAlignment="Left" Height="136" Margin="195,10,0,0" VerticalAlignment="Top" Width="400">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="nrKarty" DisplayMemberBinding="{Binding nrKarty}"/>
+                        <GridViewColumn Header="Imie" DisplayMemberBinding="{Binding imie}"/>
+                        <GridViewColumn Header="Nazwisko" DisplayMemberBinding="{Binding nazwisko}"/>
+                        <GridViewColumn Header="Wiek" DisplayMemberBinding="{Binding wiek}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Grid>
+</Window>
